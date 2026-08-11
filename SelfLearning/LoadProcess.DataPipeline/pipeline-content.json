@@ -1,0 +1,77 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "First",
+        "type": "Wait",
+        "dependsOn": [],
+        "typeProperties": {
+          "waitTimeInSeconds": 1
+        }
+      },
+      {
+        "name": "Second",
+        "type": "Wait",
+        "dependsOn": [
+          {
+            "activity": "First",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "waitTimeInSeconds": 1
+        }
+      },
+      {
+        "name": "varEmpName",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "Second",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "variableName": "varEmpName",
+          "value": "Venkat\n"
+        }
+      },
+      {
+        "name": "varEmpLocation",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "varEmpName",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "variableName": "varEmpLocation",
+          "value": "Hydreabad"
+        }
+      }
+    ],
+    "variables": {
+      "varEmpName": {
+        "type": "String"
+      },
+      "varEmpLocation": {
+        "type": "String"
+      }
+    }
+  }
+}
