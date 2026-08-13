@@ -193,6 +193,21 @@
             ]
           }
         ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 1
+        },
+        "name": "Wait1",
+        "dependsOn": [
+          {
+            "activity": "WH",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ]
   }
